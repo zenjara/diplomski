@@ -1,0 +1,40 @@
+{% extends 'loggedin.html.twig' %}
+
+
+
+
+{% block body %}
+    <div class="container account" >
+        {% if app.user.firstname %}
+        <h1 class="text-center">Welcome {{ app.user.firstname}}!</h1>
+        {% else %}
+        <h1 class="text-center">Welcome {{ app.user.username}}!</h1>
+        {% endif %}
+        <div class="container well info">
+            {% if yearOfStudy %}
+                {% if semestar %}
+                    <h4 class="text-center">You are currently year: {{ yearOfStudy }} <br> Semester: {{ semestar }}</h4>
+                {% endif %}
+            {% endif %}
+            {% if subjects %}
+             <h4 class="text-center">You are enrolled in:</h4>
+                <div class="subjects">
+                 {%for subject in subjects %}
+                    <li class="text-center"><a href="/description/professors/{{ subject.subjectName }}">{{ subject.subjectName }}</a></li>
+                 {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="container options">
+
+            <a href="/account/edit"><button class="btn btn-default">Enter/Edit Profile information</button></a><br>
+            <a href="/account/enroll"><button class="btn btn-default">Enroll in courses</button></a><br>
+            <a href="/account/grades"><button class="btn btn-default">Your grades</button></a><br>
+            <a href="/search"><button class="btn btn-default">Search for students and professors</button></a><br>
+
+
+            <a href="{{ path('user_logout') }}">Logout</a>
+        </div>
+    </div>
+
+{% endblock %}

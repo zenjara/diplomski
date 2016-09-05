@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container edit">
+        <h4>List of registered students</h4>
+        {% if students %}
+            {% for student in students  %}
+
+                    <li><a href="/professors/description/{{ student.username}}">{{student.firstname}} {{student.lastname}}</a></li>
+
+
+            {% endfor %}
+        {% else %}
+            <li>No students found</li>
+
+        {% endif %}
+        <h4>List of registered Professors</h4>
+        {% if professors %}
+
+
+            {% for prof in professors  %}
+                {% if prof.firstname %}
+                    <li><a href="/description/{{prof.username }}">{{prof.firstname }} {{prof.lastname}}</li></a>
+                {% elseif prof.username %}
+                    <li><a href="/description/{{prof.username }}">{{prof.username }}</li></a>
+                {% else  %}
+                    <li>No Professors found</li>
+                {% endif %}
+            {% endfor %}
+
+
+        {% endif %}
+        {#<a href="{{ path('user_first') }}">Go back</a>#}
+    </div>
+
+
+
+{% endblock body %}

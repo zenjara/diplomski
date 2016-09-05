@@ -1,0 +1,40 @@
+{% extends 'loggedin.html.twig' %}
+
+
+{% block body %}
+    <div class="container">
+        {#{% if app.user.firstname %}
+            <h1 class="text-center">Welcome {{ app.user.firstname}}!</h1>
+        {% else %}
+            <h1 class="text-center">Welcome {{ app.user.username}}!</h1>
+        {% endif %}#}
+        <div class="container edit">
+            {% if subjects %}
+                 {% if grades %}
+                    <h4>Your grades:</h4>
+                    {%for grade in grades %}
+                        <ul>{{grade.subject.subjectName}}:
+                            {% if grade.kolokvij1 %} <li> Kolokvij 1: {{ grade.kolokvij1}}</li>{% endif %}
+                            {% if grade.kolokvij2 %} <li> Kolokvij 2: {{ grade.kolokvij2}}</li>{% endif %}
+                            {% if grade.ispit1 %} <li> Ispit 1: {{ grade.ispit1}}</li>{% endif %}
+                            {% if grade.ispit2 %} <li> Ispit 2: {{ grade.ispit2}}</li>{% endif %}
+                            {% if grade.finalGrade %} <li> Finalna ocjena: {{ grade.finalGrade}}</li>{% endif %}
+                        </ul>
+                    {#<li><a href="/description/professors/{{ subject.subjectName }}">{{ subject.subjectName }}</a></li>#}
+                    {% endfor %}
+                 {% else %}
+                     <h4>You don't have any grades yet.</h4>
+                 {% endif %}
+            {% else %}
+                <h4>You did not enroll in any subject yet.</h4>
+            {% endif %}
+        </div>
+        <div class="container">
+
+
+
+            <a href="{{ path('user_logout') }}">Logout</a>
+        </div>
+    </div>
+
+{% endblock %}

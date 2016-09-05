@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <div class="container edit">
+
+        {% if subject %}
+            <div class="container">
+               Subject: {{ subject.subjectName }}<br><br>
+                Professor : {{ professor.firstName }} {{ professor.lastName }}
+            </div>
+        {% else %}
+            <div class="container ">
+                Oops,  something went wrong!
+            </div>
+        {% endif %}
+
+        {% if students %}
+            <div class="container   ">
+                Students:
+                {% for student in students %}
+                <li>{{ student.username }}
+                    {% if abilityToGrade %}
+                        <form action="" method="post" id="form_grade">
+                            <div class="form-group">
+                                <label for="prvi">Prvi kolokvij </label><input class="form-control" type="text" id="prvi" name="{{ student.id }}prvi" >
+                            </div>
+                            <div class="form-group">
+                                <label for="drugi">Drugi kolokvij </label><input class="form-control" type="text" id="drugi" name="{{ student.id }}drugi">
+                            </div>
+                            <div class="form-group">
+                                <label for="treci">Prvi ispitni rok </label><input class="form-control" type="text" id="treci" name="{{ student.id }}treci">
+                            </div>
+                            <div class="form-group">
+                                <label for="cetvrti">Drugi ispitni rok </label><input class="form-control" type="text" id="cetvrti" name="{{ student.id }}cetvrti">
+                            </div>
+                            <button class="btn btn-primary" type="submit" name="{{ student.id }}" id="{{student.id}}" >Grade</button>
+                        </form>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="container well">
+                Oops,  something went wrong!
+            </div>
+        {% endif %}
+
+
+
+
+    </div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'loggedin.html.twig' %}
+
+
+
+{% block body %}
+    {% for flash_message in app.session.flashBag.get('notice') %}
+        <div class="flash-notice">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+    <div class="container well edit">
+        <h3 class="text-center">Enroll here {{ app.user.firstname}}!</h3>
+        <div class="container">
+
+
+            <form action="" method="post">
+            {% for subject in subjects %}
+                <div class="form-group">
+                    <label id="{{subject.id }}">{{subject.subjectName}}</label>
+                    <input class="btn btn-success" type="submit" name="{{subject.id}}" id="{{subject.id}}"  value="Enroll">
+                </div>
+                {#<li><label id="{{subject.id }}">{{subject.subjectName}}</label>
+                <input type="submit" name="{{subject.id}}" id="{{subject.id}}"  value="Enroll">#}
+              <!--      <button type="submit" id="enroll" name="enroll" class="btn-btn-primary">Enrolloo</button>-->
+            {% endfor %}
+                     {#</li>#}
+            </form>
+
+
+   <a href="{{ path('user_logout') }}">Logout</a><br>
+   <a href="{{ path('user_first') }}">Go back</a>
+</div>
+</div>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
